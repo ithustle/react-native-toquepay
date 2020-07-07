@@ -81,7 +81,7 @@ export default PaymentOverview = props => {
 const makePayment = (props, token) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const response = await fetch("http://192.168.15.30:4000/toquepay/payment",
+            const response = await fetch("https://pay.toqueplay.com/toquepay/payment",
                 {
                     headers: {
                         Accept: 'application/json',

@@ -1,7 +1,7 @@
 export default RequestPayment = config => {
     return new Promise(async (resolve, reject) => {
         try {
-            const response = await fetch("http://192.168.15.30:4000/toquepay/merchant/token",
+            const response = await fetch("https://pay.toqueplay.com/toquepay/merchant/token",
                 {
                     headers: {
                         Accept: 'application/json',
