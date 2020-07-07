@@ -8,6 +8,8 @@ export default PaymentOverview = props => {
     const {
         token,
         paymentInfo,
+        merchant,
+        onResult
     } = props;
 
     const [ visible, setVisible] = useState(false);
@@ -18,7 +20,7 @@ export default PaymentOverview = props => {
             setVisible(true);
         }
 
-    }, [token])
+    }, [token]);
 
     return (
         <Modal
@@ -47,14 +49,25 @@ export default PaymentOverview = props => {
                         <Text style={styles.title}>Conta</Text>
                         <Text style={styles.subtitle}>{paymentInfo.mobilePhone}</Text>
                     </View>
-                    <View style={styles.contentInfoPayment}>
+                    {merchant === undefined ? null : <View style={styles.contentInfoPayment}>
                         <Text style={styles.title}>Comerciante</Text>
-                        <Text style={styles.subtitle}>ToqueMedia, Lda</Text>
-                    </View>
+                        <Text style={styles.subtitle}>{merchant}</Text>
+                    </View>}
                 </View>
                 { loading ? <ActivityIndicator size="large" color="#29A9E1" /> : <TouchableOpacity
                     activeOpacity={.8}
-                    onPress={() => makePayment(props, token) }
+                    onPress={async () => {
+
+                        setLoading(true);
+                    
+                        const payment_id = await makePayment(props, token);
+
+                        onResult(payment_id);
+
+                        setVisible(payment_id.id === undefined);
+                        setLoading(payment_id.id !== undefined);
+
+                    }}
                     style={styles.buttonPay}
                 >
                     <Text style={styles.buttonPayText}>Confirmar</Text>
@@ -68,13 +81,14 @@ export default PaymentOverview = props => {
 const makePayment = (props, token) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const response = await fetch("http://192.168.0.127:4000/toquepay/payment",
+            const response = await fetch("http://192.168.15.30:4000/toquepay/payment",
                 {
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
                         'Merchant-Id': props.merchantId,
-                        'Merchant-Key': props.merchantKey
+                        'Merchant-Key': props.merchantKey,
+                        'Authorization': `Bearer ${token}`
                     },
                     method: "POST",
                     body: JSON.stringify({...props.paymentInfo, token })
@@ -124,7 +138,8 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 11
+        zIndex: 11,
+        paddingBottom: 20
     },
     header: {
         padding: 16,
