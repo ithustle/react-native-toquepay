@@ -49,7 +49,7 @@ const App = props => {
 					amount: price,
 					mobilePhone: phoneNumberUser
 				}}
-				onResult={data => console.log("Recebi: ", data)}
+				onPaymentAccepted={data => console.log("Recebi: ", data)}
 			/>
 		</SafeAreaView>
 	)

@@ -9,7 +9,8 @@ export default PaymentOverview = props => {
         token,
         paymentInfo,
         merchant,
-        onResult
+        onPaymentAccepted,
+        onPaymentError
     } = props;
 
     const [ visible, setVisible] = useState(false);
@@ -62,7 +63,7 @@ export default PaymentOverview = props => {
                     
                         const payment_id = await makePayment(props, token);
 
-                        onResult(payment_id);
+                        onPaymentAccepted(payment_id);
 
                         setVisible(payment_id.id === undefined);
                         setLoading(payment_id.id !== undefined);
