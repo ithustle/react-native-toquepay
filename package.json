@@ -1,5 +1,5 @@
 {
-  "name": "react-native-toquepay",
+  "name": "ithustle/react-native-toquepay",
   "version": "0.0.1",
   "description": "Accept payments with Multicaixa using the ToquePay",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ithustle/toquepay.git"
+    "url": "git+https://github.com/ithustle/react-native-toquepay.git"
   },
   "keywords": [
     "react-native",
@@ -34,7 +34,7 @@
   "author": "Célio Garcia",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ithustle/toquepay/issues"
+    "url": "https://github.com/ithustle/react-native-toquepay/issues"
   },
-  "homepage": "https://github.com/ithustle/toquepay#readme"
+  "homepage": "https://github.com/ithustle/react-native-toquepay#readme"
 }
