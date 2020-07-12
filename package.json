@@ -1,5 +1,5 @@
 {
-  "name": "ithustle/react-native-toquepay",
+  "name": "react-native-toquepay",
   "version": "0.0.1",
   "description": "Accept payments with Multicaixa using the ToquePay",
   "main": "index.js",
